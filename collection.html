@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Collection | A.Vanderpuije Clothing — African Print Fashion Accra</title>
+<meta name="description" content="Browse the A.Vanderpuije Clothing collection — African-print and ready-to-wear fashion pieces. Check price and availability on WhatsApp.">
+<meta name="keywords" content="A.Vanderpuije Clothing, African print fashion Ghana, ready-to-wear Accra, African clothing Accra">
+<meta property="og:title" content="Collection | A.Vanderpuije Clothing — African Print Fashion Accra">
+<meta property="og:description" content="African-inspired ready-to-wear pieces from A.Vanderpuije Clothing. Check price and availability directly on WhatsApp.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/images/fashion-01.jpg">
+<meta name="theme-color" content="#141F36">
+<link rel="icon" href="assets/images/avanderpuije-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+<style>
+    :root{
+      --ink:#141F36;
+      --ink-2:#1E2E52;
+      --ink-3:#28406e;
+      --ivory:#F7F1E6;
+      --paper:#FCFAF5;
+      --rust:#A3402A;
+      --rust-2:#8a3423;
+      --gold:#BD8A2E;
+      --charcoal:#211C18;
+      --line:rgba(20,31,54,0.14);
+      --line-light:rgba(247,241,230,0.22);
+      --shadow:0 30px 60px -30px rgba(20,20,30,0.35);
+      --serif:'Fraunces',Georgia,serif;
+      --sans:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+      --ease:cubic-bezier(.22,.61,.36,1);
+    }
+    *{box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--charcoal);
+      background:var(--paper);
+      -webkit-font-smoothing:antialiased;
+      overflow-x:hidden;
+    }
+    img{max-width:100%;display:block;}
+    a{color:inherit;text-decoration:none;}
+    h1,h2,h3,h4{font-family:var(--serif);font-weight:500;margin:0;letter-spacing:-0.01em;}
+    p{margin:0;line-height:1.7;}
+    button{font-family:var(--sans);cursor:pointer;}
+    ::selection{background:var(--rust);color:var(--ivory);}
+    :focus-visible{outline:2px solid var(--rust);outline-offset:3px;}
+
+    .wrap{max-width:1240px;margin:0 auto;padding:0 28px;}
+    @media (max-width:640px){.wrap{padding:0 20px;}}
+
+    /* ---------- NAV ---------- */
+    header.site-nav{
+      position:sticky;top:0;z-index:200;
+      background:rgba(20,31,54,0);
+      transition:background .5s var(--ease),box-shadow .5s var(--ease);
+    }
+    header.site-nav.scrolled{
+      background:rgba(20,31,54,0.97);
+      backdrop-filter:blur(10px);
+      box-shadow:0 12px 30px -20px rgba(0,0,0,.5);
+    }
+    .nav-inner{
+      max-width:1240px;margin:0 auto;padding:16px 28px;
+      display:flex;align-items:center;justify-content:space-between;
+    }
+    .brand{display:flex;align-items:center;gap:12px;color:var(--ivory);}
+    .brand img{height:46px;width:46px;border-radius:50%;}
+    .brand-text{display:flex;flex-direction:column;line-height:1.1;}
+    .brand-text strong{font-family:var(--serif);font-size:1.05rem;letter-spacing:.02em;}
+    .brand-text span{font-size:.65rem;letter-spacing:.14em;opacity:.75;margin-top:3px;}
+    nav.links{display:flex;gap:38px;align-items:center;}
+    nav.links a{
+      color:var(--ivory);font-size:.88rem;letter-spacing:.03em;position:relative;padding:4px 0;
+    }
+    nav.links a::after{
+      content:'';position:absolute;left:0;bottom:-2px;width:0;height:1px;background:var(--gold);
+      transition:width .35s var(--ease);
+    }
+    nav.links a:hover::after,nav.links a.active::after{width:100%;}
+    .nav-cta{
+      display:inline-flex;align-items:center;gap:8px;
+      background:var(--rust);color:var(--ivory);
+      padding:11px 20px;border-radius:2px;font-size:.82rem;letter-spacing:.04em;
+      transition:background .3s var(--ease),transform .3s var(--ease);
+      border:1px solid var(--rust);
+    }
+    .nav-cta:hover{background:transparent;border-color:var(--ivory);}
+    .burger{display:none;background:none;border:0;padding:6px;color:var(--ivory);}
+    .burger svg{width:26px;height:26px;}
+
+    .mobile-panel{
+      position:fixed;inset:0;background:var(--ink);z-index:300;
+      display:flex;flex-direction:column;padding:24px 28px;
+      transform:translateY(-100%);transition:transform .5s var(--ease);
+    }
+    .mobile-panel.open{transform:translateY(0);}
+    .mobile-panel-top{display:flex;align-items:center;justify-content:space-between;}
+    .mobile-panel-top .brand img{height:40px;width:40px;}
+    .mobile-panel .close-btn{background:none;border:0;color:var(--ivory);}
+    .mobile-panel .close-btn svg{width:24px;height:24px;}
+    .mobile-links{display:flex;flex-direction:column;gap:0;margin-top:48px;}
+    .mobile-links a{
+      color:var(--ivory);font-family:var(--serif);font-size:2rem;padding:16px 0;
+      border-bottom:1px solid var(--line-light);
+    }
+    .mobile-panel .nav-cta{margin-top:36px;justify-content:center;}
+    .mobile-social{display:flex;gap:22px;margin-top:auto;padding-top:30px;}
+    .mobile-social a{color:var(--ivory);font-size:1.2rem;opacity:.8;}
+
+    @media (max-width:900px){
+      nav.links,header.site-nav .nav-cta{display:none;}
+      .burger{display:block;}
+    }
+
+    /* ---------- BUTTONS ---------- */
+    .btn{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:14px 26px;font-size:.85rem;letter-spacing:.04em;
+      border-radius:2px;border:1px solid currentColor;
+      transition:all .35s var(--ease);
+      white-space:nowrap;
+    }
+    .btn-primary{background:var(--rust);border-color:var(--rust);color:var(--ivory);}
+    .btn-primary:hover{background:var(--rust-2);border-color:var(--rust-2);}
+    .btn-ghost-dark{color:var(--ink);border-color:var(--ink);}
+    .btn-ghost-dark:hover{background:var(--ink);color:var(--ivory);}
+    .btn-ghost-light{color:var(--ivory);border-color:rgba(247,241,230,.55);}
+    .btn-ghost-light:hover{background:var(--ivory);color:var(--ink);border-color:var(--ivory);}
+    .btn svg{width:16px;height:16px;}
+
+    /* ---------- HERO ---------- */
+    .hero{
+      display:grid;grid-template-columns:1fr 1fr;min-height:88vh;background:var(--ink);
+    }
+    .hero-copy{
+      display:flex;flex-direction:column;justify-content:center;
+      padding:60px 64px;color:var(--ivory);position:relative;
+    }
+    .hero-eyebrow{font-size:.78rem;letter-spacing:.16em;color:var(--gold);margin-bottom:26px;}
+    .hero-copy h1{font-size:clamp(2.6rem,4.6vw,4.3rem);line-height:1.03;}
+    .hero-copy p.lede{
+      font-size:1.08rem;color:rgba(247,241,230,.82);max-width:440px;margin-top:26px;line-height:1.7;
+    }
+    .hero-actions{display:flex;gap:16px;margin-top:38px;flex-wrap:wrap;}
+    .hero-figure{position:relative;overflow:hidden;background:#0c1526;}
+    .hero-figure img{
+      width:100%;height:100%;object-fit:cover;object-position:top center;
+      transform:scale(1.04);transition:transform 1.4s var(--ease);
+    }
+    .hero.reveal .hero-figure img{transform:scale(1);}
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr;min-height:auto;}
+      .hero-figure{height:64vh;order:1;}
+      .hero-copy{order:2;padding:48px 24px 56px;}
+      .hero-copy p.lede{max-width:none;}
+    }
+
+    /* ---------- SECTION SCAFFOLDING ---------- */
+    section{padding:112px 0;}
+    @media (max-width:640px){section{padding:72px 0;}}
+    .section-head{max-width:640px;margin-bottom:56px;}
+    .section-head .kicker{
+      font-size:.78rem;letter-spacing:.16em;color:var(--rust);margin-bottom:16px;display:block;
+    }
+    .section-head h2{font-size:clamp(2rem,3.4vw,2.9rem);line-height:1.12;}
+    .section-head p{margin-top:18px;color:rgba(33,28,24,.68);font-size:1.02rem;max-width:520px;}
+    .on-dark .section-head p{color:rgba(247,241,230,.72);}
+    .on-dark .section-head h2,.on-dark h3{color:var(--ivory);}
+    .on-dark{background:var(--ink);color:var(--ivory);}
+
+    .reveal-up{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease);}
+    .reveal-up.in{opacity:1;transform:translateY(0);}
+    @media (prefers-reduced-motion:reduce){
+      .reveal-up{opacity:1;transform:none;transition:none;}
+      .hero-figure img{transform:none;transition:none;}
+    }
+
+    /* ---------- INTRO SPLIT ---------- */
+    .intro-split{display:grid;grid-template-columns:0.85fr 1.15fr;gap:70px;align-items:center;}
+    .intro-figure{position:relative;}
+    .intro-figure img{width:100%;height:640px;object-fit:cover;object-position:top center;}
+    .intro-figure .frame-tag{
+      position:absolute;bottom:-22px;right:-22px;background:var(--rust);color:var(--ivory);
+      padding:16px 22px;font-family:var(--serif);font-size:.95rem;max-width:220px;line-height:1.4;
+      box-shadow:var(--shadow);
+    }
+    .intro-copy h2{font-size:clamp(1.9rem,3vw,2.6rem);line-height:1.18;}
+    .intro-copy p{margin-top:22px;color:rgba(33,28,24,.72);font-size:1.04rem;max-width:480px;}
+    .intro-copy .btn{margin-top:32px;}
+    @media (max-width:900px){
+      .intro-split{grid-template-columns:1fr;gap:40px;}
+      .intro-figure img{height:420px;}
+      .intro-figure .frame-tag{right:16px;}
+    }
+
+    /* ---------- CAROUSEL ---------- */
+    .carousel-shell{position:relative;}
+    .carousel-track{
+      display:flex;gap:26px;overflow-x:auto;scroll-snap-type:x mandatory;
+      padding-bottom:8px;-ms-overflow-style:none;scrollbar-width:none;
+    }
+    .carousel-track::-webkit-scrollbar{display:none;}
+    .look-card{
+      flex:0 0 auto;width:min(320px,78vw);scroll-snap-align:start;
+      background:var(--paper);border:1px solid var(--line);
+    }
+    .look-card .look-img{aspect-ratio:3/4;overflow:hidden;position:relative;}
+    .look-card .look-img img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease);}
+    .look-card:hover .look-img img{transform:scale(1.06);}
+    .look-body{padding:20px 20px 24px;}
+    .look-body h3{font-size:1.15rem;}
+    .look-body .price-line{font-size:.85rem;color:rgba(33,28,24,.6);margin-top:8px;letter-spacing:.02em;}
+    .look-body .look-actions{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap;}
+    .mini-btn{
+      font-size:.76rem;letter-spacing:.03em;padding:10px 16px;border:1px solid var(--ink);
+      display:inline-flex;align-items:center;gap:7px;transition:all .3s var(--ease);
+    }
+    .mini-btn.solid{background:var(--ink);color:var(--ivory);}
+    .mini-btn.solid:hover{background:var(--rust);border-color:var(--rust);}
+    .mini-btn.outline:hover{background:var(--ink);color:var(--ivory);}
+    .mini-btn svg{width:14px;height:14px;}
+
+    .carousel-nav{display:flex;justify-content:space-between;align-items:center;margin-top:30px;}
+    .carousel-arrows{display:flex;gap:10px;}
+    .arrow-btn{
+      width:46px;height:46px;border-radius:50%;border:1px solid var(--ink);background:none;
+      display:flex;align-items:center;justify-content:center;transition:all .3s var(--ease);
+    }
+    .arrow-btn:hover{background:var(--ink);color:var(--ivory);}
+    .arrow-btn svg{width:18px;height:18px;}
+    .dots{display:flex;gap:8px;}
+    .dots span{width:6px;height:6px;border-radius:50%;background:var(--line);transition:all .3s var(--ease);}
+    .dots span.active{background:var(--rust);width:22px;border-radius:4px;}
+
+    /* ---------- WHY GRID ---------- */
+    .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+    .why-item{background:var(--paper);padding:40px 30px;}
+    .why-item .num{font-family:var(--serif);font-size:.85rem;color:var(--rust);}
+    .why-item h3{font-size:1.15rem;margin-top:18px;}
+    .why-item p{margin-top:12px;font-size:.92rem;color:rgba(33,28,24,.66);}
+    @media (max-width:900px){.why-grid{grid-template-columns:repeat(2,1fr);}}
+    @media (max-width:560px){.why-grid{grid-template-columns:1fr;}}
+
+    /* ---------- WHATSAPP BANNER ---------- */
+    .wa-banner{
+      background:var(--ink);color:var(--ivory);
+      display:grid;grid-template-columns:1.1fr 0.9fr;align-items:center;
+    }
+    .wa-banner .wa-copy{padding:80px 64px;}
+    .wa-banner h2{font-size:clamp(2rem,3.6vw,2.8rem);}
+    .wa-banner p{margin-top:20px;color:rgba(247,241,230,.75);max-width:420px;}
+    .wa-banner .btn{margin-top:32px;}
+    .wa-banner .wa-figure{height:100%;min-height:420px;overflow:hidden;}
+    .wa-banner .wa-figure img{width:100%;height:100%;object-fit:cover;object-position:top;}
+    @media (max-width:900px){
+      .wa-banner{grid-template-columns:1fr;}
+      .wa-banner .wa-copy{padding:56px 24px;}
+      .wa-banner .wa-figure{min-height:340px;}
+    }
+
+    /* ---------- LOCATIONS ---------- */
+    .loc-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;}
+    .loc-card{border:1px solid var(--line);padding:38px 34px;background:var(--paper);}
+    .loc-card .loc-label{font-size:.75rem;letter-spacing:.14em;color:var(--rust);}
+    .loc-card h3{font-size:1.5rem;margin-top:14px;}
+    .loc-card .loc-detail{margin-top:18px;color:rgba(33,28,24,.68);font-size:.94rem;line-height:1.9;}
+    .loc-card .loc-detail strong{color:var(--charcoal);}
+    .loc-actions{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap;}
+    @media (max-width:760px){.loc-grid{grid-template-columns:1fr;}}
+
+    /* ---------- FOOTER ---------- */
+    footer{background:var(--ink);color:rgba(247,241,230,.82);padding-top:80px;}
+    .footer-grid{
+      display:grid;grid-template-columns:1.3fr 0.8fr 1fr 0.9fr;gap:50px;padding-bottom:60px;
+      border-bottom:1px solid var(--line-light);
+    }
+    .footer-brand img{height:52px;width:52px;border-radius:50%;margin-bottom:18px;}
+    .footer-brand p{font-size:.92rem;color:rgba(247,241,230,.65);max-width:280px;margin-top:14px;}
+    .footer-social{display:flex;gap:16px;margin-top:24px;}
+    .footer-social a{
+      width:38px;height:38px;border:1px solid rgba(247,241,230,.3);border-radius:50%;
+      display:flex;align-items:center;justify-content:center;transition:all .3s var(--ease);
+    }
+    .footer-social a:hover{background:var(--rust);border-color:var(--rust);}
+    .footer-social svg{width:16px;height:16px;}
+    .footer-col h4{font-family:var(--sans);font-size:.78rem;letter-spacing:.1em;color:var(--gold);margin-bottom:20px;font-weight:600;}
+    .footer-col a,.footer-col p{display:block;font-size:.9rem;color:rgba(247,241,230,.72);margin-bottom:12px;}
+    .footer-col a:hover{color:var(--ivory);}
+    .footer-bottom{
+      display:flex;justify-content:space-between;align-items:center;padding:26px 0;
+      font-size:.78rem;color:rgba(247,241,230,.5);flex-wrap:wrap;gap:10px;
+    }
+    @media (max-width:900px){.footer-grid{grid-template-columns:1fr 1fr;}}
+    @media (max-width:560px){.footer-grid{grid-template-columns:1fr;}}
+
+    /* ---------- FLOATING BUTTONS ---------- */
+    .float-wa{
+      position:fixed;bottom:24px;left:24px;z-index:150;
+      width:58px;height:58px;border-radius:50%;background:#25D366;color:#fff;
+      display:flex;align-items:center;justify-content:center;box-shadow:0 14px 30px -10px rgba(0,0,0,.4);
+      animation:pulse-wa 3.2s ease-in-out infinite;
+    }
+    .float-wa svg{width:28px;height:28px;}
+    @keyframes pulse-wa{
+      0%,100%{box-shadow:0 14px 30px -10px rgba(0,0,0,.4),0 0 0 0 rgba(37,211,102,.5);}
+      50%{box-shadow:0 14px 30px -10px rgba(0,0,0,.4),0 0 0 10px rgba(37,211,102,0);}
+    }
+    @media (prefers-reduced-motion:reduce){.float-wa{animation:none;}}
+    .float-top{
+      position:fixed;bottom:24px;right:24px;z-index:150;width:48px;height:48px;border-radius:50%;
+      background:var(--ink);color:var(--ivory);border:none;display:flex;align-items:center;justify-content:center;
+      opacity:0;pointer-events:none;transition:opacity .3s var(--ease);box-shadow:0 10px 24px -10px rgba(0,0,0,.5);
+    }
+    .float-top.show{opacity:1;pointer-events:auto;}
+    .float-top svg{width:18px;height:18px;}
+
+    /* ---------- PAGE HERO (interior pages) ---------- */
+    .page-hero{
+      background:var(--ink);color:var(--ivory);padding:150px 0 70px;position:relative;overflow:hidden;
+    }
+    .page-hero .kicker{font-size:.78rem;letter-spacing:.16em;color:var(--gold);}
+    .page-hero h1{font-size:clamp(2.4rem,5vw,4rem);margin-top:18px;}
+    .page-hero p{margin-top:20px;color:rgba(247,241,230,.72);max-width:520px;font-size:1.02rem;}
+
+    /* ---------- COLLECTION GRID ---------- */
+    .filter-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:48px;}
+    .filter-btn{
+      padding:10px 20px;border:1px solid var(--line);font-size:.8rem;letter-spacing:.03em;
+      background:var(--paper);transition:all .3s var(--ease);
+    }
+    .filter-btn.active,.filter-btn:hover{background:var(--ink);color:var(--ivory);border-color:var(--ink);}
+    .collection-grid{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:30px;
+    }
+    .collection-grid .look-card{width:auto;}
+    .collection-grid .look-card.wide{grid-column:span 2;}
+    .collection-grid .look-card.wide .look-img{aspect-ratio:16/10;}
+    @media (max-width:900px){
+      .collection-grid{grid-template-columns:repeat(2,1fr);}
+      .collection-grid .look-card.wide{grid-column:span 2;}
+    }
+    @media (max-width:600px){
+      .collection-grid{grid-template-columns:1fr;}
+      .collection-grid .look-card.wide{grid-column:span 1;}
+    }
+    .fade-item{transition:opacity .4s var(--ease),transform .4s var(--ease);}
+    .fade-item.hide{opacity:0;transform:scale(.96);pointer-events:none;position:absolute;visibility:hidden;height:0;overflow:hidden;}
+
+    /* ---------- GALLERY ---------- */
+    .gallery-grid{
+      column-count:3;column-gap:22px;
+    }
+    .gallery-grid img{width:100%;margin-bottom:22px;cursor:zoom-in;transition:opacity .4s var(--ease);}
+    .gallery-grid img:hover{opacity:.88;}
+    .gallery-grid figure{margin:0;break-inside:avoid;}
+    @media (max-width:900px){.gallery-grid{column-count:2;}}
+    @media (max-width:560px){.gallery-grid{column-count:1;}}
+
+    .lightbox{
+      position:fixed;inset:0;background:rgba(14,18,28,.97);z-index:400;
+      display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;
+      transition:opacity .35s var(--ease);
+    }
+    .lightbox.open{opacity:1;pointer-events:auto;}
+    .lightbox img{max-width:88vw;max-height:82vh;object-fit:contain;}
+    .lightbox-close,.lightbox-prev,.lightbox-next{
+      position:absolute;background:none;border:0;color:var(--ivory);
+    }
+    .lightbox-close{top:26px;right:26px;}
+    .lightbox-close svg{width:26px;height:26px;}
+    .lightbox-prev,.lightbox-next{top:50%;transform:translateY(-50%);}
+    .lightbox-prev{left:20px;}
+    .lightbox-next{right:20px;}
+    .lightbox-prev svg,.lightbox-next svg{width:32px;height:32px;}
+    .lightbox-count{
+      position:absolute;bottom:26px;left:50%;transform:translateX(-50%);
+      color:rgba(247,241,230,.7);font-size:.82rem;letter-spacing:.08em;
+    }
+    @media (max-width:640px){
+      .lightbox-prev,.lightbox-next{display:none;}
+    }
+
+    /* ---------- ENQUIRY MODAL ---------- */
+    .modal-overlay{
+      position:fixed;inset:0;background:rgba(14,18,28,.7);z-index:400;
+      display:flex;align-items:center;justify-content:center;padding:20px;
+      opacity:0;pointer-events:none;transition:opacity .3s var(--ease);
+    }
+    .modal-overlay.open{opacity:1;pointer-events:auto;}
+    .modal-box{
+      background:var(--paper);max-width:420px;width:100%;padding:36px 32px;position:relative;
+      transform:translateY(16px);transition:transform .35s var(--ease);
+    }
+    .modal-overlay.open .modal-box{transform:translateY(0);}
+    .modal-close{position:absolute;top:16px;right:16px;background:none;border:0;}
+    .modal-close svg{width:20px;height:20px;}
+    .modal-box img{width:100%;height:220px;object-fit:cover;margin-bottom:20px;}
+    .modal-box h3{font-size:1.3rem;}
+    .modal-box .price-line{margin-top:8px;color:rgba(33,28,24,.6);font-size:.9rem;}
+    .modal-box .btn{margin-top:22px;width:100%;justify-content:center;}
+
+    /* ---------- ABOUT PAGE ---------- */
+    .philosophy-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+    .phil-item{background:var(--paper);padding:44px 34px;}
+    .phil-item .tag{font-size:.75rem;letter-spacing:.12em;color:var(--rust);}
+    .phil-item h3{font-size:1.3rem;margin-top:16px;}
+    .phil-item p{margin-top:14px;color:rgba(33,28,24,.68);font-size:.94rem;}
+    @media (max-width:900px){.philosophy-grid{grid-template-columns:1fr;}}
+
+    .story-figures{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:70px;}
+    .story-figures img{width:100%;height:340px;object-fit:cover;}
+    .story-figures img:nth-child(2){margin-top:40px;}
+    @media (max-width:760px){.story-figures{grid-template-columns:1fr;}.story-figures img:nth-child(2){margin-top:0;}.story-figures img{height:260px;}}
+
+    /* ---------- CONTACT PAGE ---------- */
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;}
+    .contact-info .info-block{margin-bottom:36px;}
+    .contact-info .info-block h4{font-size:.78rem;letter-spacing:.12em;color:var(--rust);margin-bottom:12px;}
+    .contact-info .info-block .val{font-size:1.15rem;font-family:var(--serif);}
+    .contact-info .info-actions{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;}
+    .contact-form{background:var(--ink);color:var(--ivory);padding:44px;}
+    .contact-form h3{font-size:1.5rem;margin-bottom:28px;color:var(--ivory);}
+    .field{margin-bottom:20px;}
+    .field label{display:block;font-size:.78rem;letter-spacing:.06em;margin-bottom:8px;color:rgba(247,241,230,.7);}
+    .field input,.field textarea{
+      width:100%;background:transparent;border:1px solid rgba(247,241,230,.3);color:var(--ivory);
+      padding:13px 14px;font-family:var(--sans);font-size:.94rem;transition:border-color .3s var(--ease);
+    }
+    .field input:focus,.field textarea:focus{border-color:var(--gold);outline:none;}
+    .field textarea{min-height:110px;resize:vertical;}
+    .contact-form .btn{width:100%;justify-content:center;}
+    @media (max-width:900px){.contact-grid{grid-template-columns:1fr;}.contact-form{padding:30px 24px;}}
+
+    .map-strip{display:grid;grid-template-columns:1fr 1fr;}
+    .map-strip a{position:relative;height:320px;overflow:hidden;display:block;}
+    .map-strip img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease);}
+    .map-strip a:hover img{transform:scale(1.05);}
+    .map-strip .map-label{
+      position:absolute;bottom:0;left:0;right:0;padding:22px 26px;
+      background:linear-gradient(0deg,rgba(20,31,54,.85),transparent);color:var(--ivory);
+    }
+    @media (max-width:760px){.map-strip{grid-template-columns:1fr;}}
+
+</style>
+</head>
+<body>
+  <header class="site-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="brand">
+        <img src="assets/images/avanderpuije-logo.png" alt="A.Vanderpuije Clothing logo">
+        <span class="brand-text"><strong>A.Vanderpuije</strong><span>CLOTHING &amp; ACCESSORIES</span></span>
+      </a>
+      <nav class="links">
+        <a href="index.html" class="">Home</a>
+        <a href="collection.html" class="active">Collection</a>
+        <a href="about.html" class="">About</a>
+        <a href="gallery.html" class="">Gallery</a>
+        <a href="contact.html" class="">Contact</a>
+      </nav>
+      <a href="#" class="nav-cta" data-wa>
+        <i class="fa-brands fa-whatsapp"></i> WhatsApp Us
+      </a>
+      <button class="burger" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-panel">
+    <div class="mobile-panel-top">
+      <a href="index.html" class="brand">
+        <img src="assets/images/avanderpuije-logo.png" alt="A.Vanderpuije Clothing logo">
+      </a>
+      <button class="close-btn" aria-label="Close menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>
+      </button>
+    </div>
+    <div class="mobile-links">
+      <a href="index.html">Home</a>
+      <a href="collection.html">Collection</a>
+      <a href="about.html">About</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <a href="#" class="btn btn-primary nav-cta" data-wa><i class="fa-brands fa-whatsapp"></i> WhatsApp Us</a>
+    <div class="mobile-social">
+      <a href="#" data-social-instagram aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      <a href="#" data-social-facebook aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+      <a href="#" data-social-tiktok aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+    </div>
+  </div>
+
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="kicker">SHOP THE EDIT</span>
+      <h1>The Collection</h1>
+      <p>Explore African-inspired ready-to-wear fashion. Every piece shown is available to check via WhatsApp for current price, size and stock.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="filter-row">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="featured">Featured</button>
+        <button class="filter-btn" data-filter="print">African Print</button>
+        <button class="filter-btn" data-filter="ready">Ready to Wear</button>
+      </div>
+
+      <div class="collection-grid">
+
+        <article class="look-card fade-item wide" data-tags="featured print">
+          <div class="look-img"><img src="assets/images/fashion-05.jpg" alt="Model in a patchwork African-print maxi skirt with a black top" loading="lazy"></div>
+          <div class="look-body">
+            <h3>Patchwork Print Maxi Skirt</h3>
+            <p style="margin-top:6px;color:rgba(33,28,24,.65);font-size:.92rem;">A high-waisted panelled skirt in mixed African prints, styled with a simple black top.</p>
+            <p class="price-line">Price &amp; Availability — WhatsApp Us</p>
+            <div class="look-actions">
+              <button class="mini-btn solid" data-open-modal data-name="Patchwork Print Maxi Skirt" data-img="assets/images/fashion-05.jpg">Check Price</button>
+              <a href="#" class="mini-btn outline" data-wa data-wa-product="Patchwork Print Maxi Skirt"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="look-card fade-item" data-tags="featured print">
+          <div class="look-img"><img src="assets/images/fashion-01.jpg" alt="Off-shoulder African-print gown in red, blue and gold" loading="lazy"></div>
+          <div class="look-body">
+            <h3>Statement Print Gown</h3>
+            <p class="price-line">Price &amp; Availability — WhatsApp Us</p>
+            <div class="look-actions">
+              <button class="mini-btn solid" data-open-modal data-name="Statement Print Gown" data-img="assets/images/fashion-01.jpg">Check Price</button>
+              <a href="#" class="mini-btn outline" data-wa data-wa-product="Statement Print Gown"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+          </div>
+        </article>
+
+        <article class="look-card fade-item" data-tags="print">
+          <div class="look-img"><img src="assets/images/fashion-02.jpg" alt="Rust and gold print sleeveless midi dress" loading="lazy"></div>
+          <div class="look-body">
+            <h3>Signature Print Look</h3>
+            <p class="price-line">Price &amp; Availability — WhatsApp Us</p>
+            <div class="look-actions">
+              <button class="mini-btn solid" data-open-modal data-name="Signature Print Look" data-img="assets/images/fashion-02.jpg">Check Price</button>
+              <a href="#" class="mini-btn outline" data-wa data-wa-product="Signature Print Look"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+          </div>
+        </article>
+
+        <article class="look-card fade-item" data-tags="ready print">
+          <div class="look-img"><img src="assets/images/fashion-03.jpg" alt="Teal and purple floral wrap-style maxi dress" loading="lazy"></div>
+          <div class="look-body">
+            <h3>Contemporary African Print</h3>
+            <p class="price-line">Price &amp; Availability — WhatsApp Us</p>
+            <div class="look-actions">
+              <button class="mini-btn solid" data-open-modal data-name="Contemporary African Print Dress" data-img="assets/images/fashion-03.jpg">Check Price</button>
+              <a href="#" class="mini-btn outline" data-wa data-wa-product="Contemporary African Print Dress"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+          </div>
+        </article>
+
+        <article class="look-card fade-item" data-tags="ready featured" style="grid-column:span 1;">
+          <div class="look-img" style="aspect-ratio:3/4;"><img src="assets/images/fashion-06.jpg" alt="Mustard tie-dye halter top and wide-leg trouser co-ord, back view" loading="lazy"></div>
+          <div class="look-body">
+            <h3>Ready-to-Wear Co-ord</h3>
+            <p class="price-line">Price &amp; Availability — WhatsApp Us</p>
+            <div class="look-actions">
+              <button class="mini-btn solid" data-open-modal data-name="Ready-to-Wear Co-ord" data-img="assets/images/fashion-06.jpg">Check Price</button>
+              <a href="#" class="mini-btn outline" data-wa data-wa-product="Ready-to-Wear Co-ord"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+          </div>
+        </article>
+
+        <article class="look-card fade-item" data-tags="print">
+          <div class="look-img"><img src="assets/images/fashion-07.jpg" alt="Sweetheart-neckline gown in a red and black abstract print" loading="lazy"></div>
+          <div class="look-body">
+            <h3>Abstract Print Evening Look</h3>
+            <p class="price-line">Price &amp; Availability — WhatsApp Us</p>
+            <div class="look-actions">
+              <button class="mini-btn solid" data-open-modal data-name="Abstract Print Evening Look" data-img="assets/images/fashion-07.jpg">Check Price</button>
+              <a href="#" class="mini-btn outline" data-wa data-wa-product="Abstract Print Evening Look"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+          </div>
+        </article>
+
+        <article class="look-card fade-item wide" data-tags="featured print">
+          <div class="look-img"><img src="assets/images/fashion-11.jpg" alt="Blue, red and purple painterly-print gown with tie shoulders" loading="lazy"></div>
+          <div class="look-body">
+            <h3>Painterly Print Evening Gown</h3>
+            <p style="margin-top:6px;color:rgba(33,28,24,.65);font-size:.92rem;">A full-skirted gown in a bold painterly print, finished with tie-shoulder detailing.</p>
+            <p class="price-line">Price &amp; Availability — WhatsApp Us</p>
+            <div class="look-actions">
+              <button class="mini-btn solid" data-open-modal data-name="Painterly Print Evening Gown" data-img="assets/images/fashion-11.jpg">Check Price</button>
+              <a href="#" class="mini-btn outline" data-wa data-wa-product="Painterly Print Evening Gown"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="look-card fade-item" data-tags="ready print">
+          <div class="look-img"><img src="assets/images/fashion-08.jpg" alt="Magenta batik-print kaftan top and trouser two-piece" loading="lazy"></div>
+          <div class="look-body">
+            <h3>Batik Print Two-Piece</h3>
+            <p class="price-line">Price &amp; Availability — WhatsApp Us</p>
+            <div class="look-actions">
+              <button class="mini-btn solid" data-open-modal data-name="Batik Print Two-Piece" data-img="assets/images/fashion-08.jpg">Check Price</button>
+              <a href="#" class="mini-btn outline" data-wa data-wa-product="Batik Print Two-Piece"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+          </div>
+        </article>
+
+        <article class="look-card fade-item" data-tags="ready">
+          <div class="look-img"><img src="assets/images/fashion-10.jpg" alt="Mustard tie-dye deep V-neck jumpsuit" loading="lazy"></div>
+          <div class="look-body">
+            <h3>Deep-V Print Jumpsuit</h3>
+            <p class="price-line">Price &amp; Availability — WhatsApp Us</p>
+            <div class="look-actions">
+              <button class="mini-btn solid" data-open-modal data-name="Deep-V Print Jumpsuit" data-img="assets/images/fashion-10.jpg">Check Price</button>
+              <a href="#" class="mini-btn outline" data-wa data-wa-product="Deep-V Print Jumpsuit"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+          </div>
+        </article>
+
+        <article class="look-card fade-item" data-tags="featured ready">
+          <div class="look-img"><img src="assets/images/fashion-09.jpg" alt="Pink and orange print peplum top styled over a black dress" loading="lazy"></div>
+          <div class="look-body">
+            <h3>Peplum Print Overlay</h3>
+            <p class="price-line">Price &amp; Availability — WhatsApp Us</p>
+            <div class="look-actions">
+              <button class="mini-btn solid" data-open-modal data-name="Peplum Print Overlay" data-img="assets/images/fashion-09.jpg">Check Price</button>
+              <a href="#" class="mini-btn outline" data-wa data-wa-product="Peplum Print Overlay"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="wa-banner" aria-label="Shop on WhatsApp" style="padding:0;">
+    <div class="wa-copy reveal-up">
+      <span class="hero-eyebrow">CAN'T DECIDE?</span>
+      <h2>Ask us anything.</h2>
+      <p>Message us the look you like and we'll confirm price, size and whether it's in stock right now.</p>
+      <a href="#" class="btn btn-primary" data-wa><i class="fa-brands fa-whatsapp"></i> Ask on WhatsApp</a>
+    </div>
+    <div class="wa-figure">
+      <img src="assets/images/fashion-04.jpg" alt="Model wearing a blue and red print gown, back view" loading="lazy">
+    </div>
+  </section>
+
+  <!-- Enquiry modal -->
+  <div class="modal-overlay">
+    <div class="modal-box">
+      <button class="modal-close" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg></button>
+      <img src="" alt="">
+      <h3></h3>
+      <p class="price-line">Price &amp; Availability</p>
+      <a href="#" class="btn btn-primary" data-modal-wa><i class="fa-brands fa-whatsapp"></i> Ask on WhatsApp</a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="assets/images/avanderpuije-logo.png" alt="A.Vanderpuije Clothing logo">
+          <div style="font-family:var(--serif);font-size:1.2rem;color:var(--ivory);">A.Vanderpuije Clothing</div>
+          <p>Contemporary African-inspired fashion and ready-to-wear style in Accra.</p>
+          <div class="footer-social">
+            <a href="#" data-social-instagram aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" data-social-facebook aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#" data-social-tiktok aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="#" data-wa aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>QUICK LINKS</h4>
+          <a href="index.html">Home</a>
+          <a href="collection.html">Collection</a>
+          <a href="about.html">About</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>LOCATIONS</h4>
+          <a href="#" data-maps="0"><i class="fa-solid fa-location-dot" style="margin-right:8px;"></i>La-Bawaleshi Road, Accra</a>
+          <a href="#" data-maps="1"><i class="fa-solid fa-location-dot" style="margin-right:8px;"></i>Otele Avenue, Accra</a>
+          <p><i class="fa-regular fa-clock" style="margin-right:8px;"></i><span data-hours-text></span></p>
+        </div>
+        <div class="footer-col">
+          <h4>GET IN TOUCH</h4>
+          <a href="#" data-tel><i class="fa-solid fa-phone" style="margin-right:8px;"></i><span data-phone-text></span></a>
+          <a href="#" data-wa><i class="fa-brands fa-whatsapp" style="margin-right:8px;"></i>Chat on WhatsApp</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 A.Vanderpuije Clothing. All rights reserved.</span>
+        <span>Accra, Ghana</span>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#" class="float-wa" data-wa aria-label="Chat with A.Vanderpuije Clothing on WhatsApp" title="Chat with A.Vanderpuije Clothing">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+  <button class="float-top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+  </button>
+
+<script>
+    /* =========================================================
+       CONFIG — replace these values with the client's live details
+       ========================================================= */
+    const BUSINESS_CONFIG = {
+      name: "A.Vanderpuije Clothing",
+      phoneDisplay: "+233 20 852 7889",
+      phoneDial: "+233208527889",
+      whatsapp: "233208527889", // digits only, country code first, no + or leading 0
+      locations: [
+        { label: "La-Bawaleshi Road", city: "Accra, Ghana", mapsUrl: "#" }, // REPLACE with verified Google Maps link
+        { label: "Otele Avenue", city: "Accra, Ghana", mapsUrl: "#" }       // REPLACE with verified Google Maps link
+      ],
+      hours: "Monday – Saturday, 8:00 AM – 7:30 PM"
+    };
+
+    // REPLACE THESE PLACEHOLDER SOCIAL LINKS WITH VERIFIED CLIENT SOCIAL ACCOUNTS
+    const SOCIAL_LINKS = {
+      instagram: "#",
+      facebook: "#",
+      tiktok: "#"
+    };
+
+    function waLink(message){
+      return `https://wa.me/${BUSINESS_CONFIG.whatsapp}?text=${encodeURIComponent(message)}`;
+    }
+    function defaultWaMessage(){
+      return `Hello ${BUSINESS_CONFIG.name}, I am interested in your collection. Please let me know more about pricing and availability.`;
+    }
+    function productWaMessage(name){
+      return `Hello ${BUSINESS_CONFIG.name}, I am interested in the ${name}. Please let me know the current price and availability.`;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+
+      /* ---------- populate wa links ---------- */
+      document.querySelectorAll('[data-wa]').forEach(el=>{
+        const product = el.getAttribute('data-wa-product');
+        el.href = waLink(product ? productWaMessage(product) : defaultWaMessage());
+      });
+      document.querySelectorAll('[data-tel]').forEach(el=>{
+        el.href = `tel:${BUSINESS_CONFIG.phoneDial}`;
+      });
+      document.querySelectorAll('[data-phone-text]').forEach(el=>{
+        el.textContent = BUSINESS_CONFIG.phoneDisplay;
+      });
+      document.querySelectorAll('[data-hours-text]').forEach(el=>{
+        el.textContent = BUSINESS_CONFIG.hours;
+      });
+      document.querySelectorAll('[data-social-instagram]').forEach(el=>el.href = SOCIAL_LINKS.instagram);
+      document.querySelectorAll('[data-social-facebook]').forEach(el=>el.href = SOCIAL_LINKS.facebook);
+      document.querySelectorAll('[data-social-tiktok]').forEach(el=>el.href = SOCIAL_LINKS.tiktok);
+      document.querySelectorAll('[data-maps]').forEach(el=>{
+        const idx = Number(el.getAttribute('data-maps'));
+        el.href = BUSINESS_CONFIG.locations[idx].mapsUrl;
+      });
+
+      /* ---------- sticky nav ---------- */
+      const nav = document.querySelector('header.site-nav');
+      if(nav){
+        const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 40);
+        onScroll();
+        window.addEventListener('scroll', onScroll, {passive:true});
+      }
+
+      /* ---------- mobile menu ---------- */
+      const burger = document.querySelector('.burger');
+      const panel = document.querySelector('.mobile-panel');
+      const closeBtn = document.querySelector('.mobile-panel .close-btn');
+      if(burger && panel){
+        burger.addEventListener('click', ()=>{
+          panel.classList.add('open');
+          document.body.style.overflow='hidden';
+        });
+        const closePanel = ()=>{ panel.classList.remove('open'); document.body.style.overflow=''; };
+        closeBtn && closeBtn.addEventListener('click', closePanel);
+        panel.querySelectorAll('a').forEach(a=>a.addEventListener('click', closePanel));
+      }
+
+      /* ---------- reveal on scroll ---------- */
+      const revealEls = document.querySelectorAll('.reveal-up');
+      if('IntersectionObserver' in window && revealEls.length){
+        const io = new IntersectionObserver((entries)=>{
+          entries.forEach(entry=>{
+            if(entry.isIntersecting){ entry.target.classList.add('in'); io.unobserve(entry.target); }
+          });
+        }, {threshold:0.15});
+        revealEls.forEach(el=>io.observe(el));
+      } else {
+        revealEls.forEach(el=>el.classList.add('in'));
+      }
+
+      /* ---------- hero image reveal ---------- */
+      const hero = document.querySelector('.hero');
+      if(hero){ requestAnimationFrame(()=> setTimeout(()=>hero.classList.add('reveal'), 80)); }
+
+      /* ---------- carousel ---------- */
+      document.querySelectorAll('.carousel-shell').forEach(shell=>{
+        const track = shell.querySelector('.carousel-track');
+        const prev = shell.querySelector('.arrow-btn.prev');
+        const next = shell.querySelector('.arrow-btn.next');
+        const dotsWrap = shell.querySelector('.dots');
+        const cards = track ? Array.from(track.children) : [];
+        if(!track || !cards.length) return;
+
+        if(dotsWrap){
+          dotsWrap.innerHTML = '';
+          cards.forEach((_,i)=>{
+            const d = document.createElement('span');
+            if(i===0) d.classList.add('active');
+            dotsWrap.appendChild(d);
+          });
+        }
+        const updateDots = () => {
+          if(!dotsWrap) return;
+          const scrollLeft = track.scrollLeft;
+          const cardWidth = cards[0].offsetWidth + 26;
+          const idx = Math.round(scrollLeft / cardWidth);
+          Array.from(dotsWrap.children).forEach((d,i)=>d.classList.toggle('active', i===idx));
+        };
+        track.addEventListener('scroll', () => {
+          window.clearTimeout(track._t);
+          track._t = window.setTimeout(updateDots, 80);
+        }, {passive:true});
+
+        const scrollByCard = (dir) => {
+          const cardWidth = cards[0].offsetWidth + 26;
+          track.scrollBy({left: dir*cardWidth, behavior:'smooth'});
+        };
+        prev && prev.addEventListener('click', ()=>scrollByCard(-1));
+        next && next.addEventListener('click', ()=>scrollByCard(1));
+
+        /* gentle autoplay, pauses on interaction */
+        let autoplay = shell.hasAttribute('data-autoplay');
+        let timer;
+        const play = () => {
+          if(!autoplay) return;
+          timer = setInterval(()=>{
+            const atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 10;
+            if(atEnd){ track.scrollTo({left:0, behavior:'smooth'}); }
+            else { scrollByCard(1); }
+          }, 4200);
+        };
+        const stop = () => { clearInterval(timer); autoplay=false; };
+        ['pointerdown','wheel','touchstart'].forEach(evt=>track.addEventListener(evt, stop, {passive:true}));
+        prev && prev.addEventListener('click', stop);
+        next && next.addEventListener('click', stop);
+        play();
+      });
+
+      /* ---------- lightbox (gallery) ---------- */
+      const lightbox = document.querySelector('.lightbox');
+      if(lightbox){
+        const imgs = Array.from(document.querySelectorAll('.gallery-grid img'));
+        const lbImg = lightbox.querySelector('img');
+        const countEl = lightbox.querySelector('.lightbox-count');
+        let idx = 0;
+        const show = (i) => {
+          idx = (i+imgs.length)%imgs.length;
+          lbImg.src = imgs[idx].src;
+          lbImg.alt = imgs[idx].alt;
+          if(countEl) countEl.textContent = `${String(idx+1).padStart(2,'0')} / ${String(imgs.length).padStart(2,'0')}`;
+        };
+        imgs.forEach((img,i)=>img.addEventListener('click', ()=>{
+          show(i); lightbox.classList.add('open'); document.body.style.overflow='hidden';
+        }));
+        const close = () => { lightbox.classList.remove('open'); document.body.style.overflow=''; };
+        lightbox.querySelector('.lightbox-close').addEventListener('click', close);
+        lightbox.addEventListener('click', (e)=>{ if(e.target === lightbox) close(); });
+        lightbox.querySelector('.lightbox-prev').addEventListener('click', ()=>show(idx-1));
+        lightbox.querySelector('.lightbox-next').addEventListener('click', ()=>show(idx+1));
+        document.addEventListener('keydown', (e)=>{
+          if(!lightbox.classList.contains('open')) return;
+          if(e.key==='Escape') close();
+          if(e.key==='ArrowLeft') show(idx-1);
+          if(e.key==='ArrowRight') show(idx+1);
+        });
+        /* basic swipe */
+        let sx=0;
+        lightbox.addEventListener('touchstart', e=>sx=e.touches[0].clientX, {passive:true});
+        lightbox.addEventListener('touchend', e=>{
+          const dx = e.changedTouches[0].clientX - sx;
+          if(dx>50) show(idx-1); else if(dx<-50) show(idx+1);
+        }, {passive:true});
+      }
+
+      /* ---------- enquiry modal ---------- */
+      const modal = document.querySelector('.modal-overlay');
+      if(modal){
+        const modalImg = modal.querySelector('img');
+        const modalTitle = modal.querySelector('h3');
+        const modalBtn = modal.querySelector('[data-modal-wa]');
+        document.querySelectorAll('[data-open-modal]').forEach(trigger=>{
+          trigger.addEventListener('click', ()=>{
+            const name = trigger.getAttribute('data-name');
+            const img = trigger.getAttribute('data-img');
+            modalImg.src = img; modalImg.alt = name;
+            modalTitle.textContent = name;
+            modalBtn.href = waLink(productWaMessage(name));
+            modal.classList.add('open'); document.body.style.overflow='hidden';
+          });
+        });
+        const closeModal = () => { modal.classList.remove('open'); document.body.style.overflow=''; };
+        modal.querySelector('.modal-close').addEventListener('click', closeModal);
+        modal.addEventListener('click', e=>{ if(e.target===modal) closeModal(); });
+      }
+
+      /* ---------- collection filters ---------- */
+      const filterRow = document.querySelector('.filter-row');
+      if(filterRow){
+        const items = document.querySelectorAll('.collection-grid .fade-item');
+        filterRow.querySelectorAll('.filter-btn').forEach(btn=>{
+          btn.addEventListener('click', ()=>{
+            filterRow.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+            btn.classList.add('active');
+            const f = btn.getAttribute('data-filter');
+            items.forEach(item=>{
+              const show = f==='all' || item.getAttribute('data-tags').includes(f);
+              item.classList.toggle('hide', !show);
+            });
+          });
+        });
+      }
+
+      /* ---------- contact form -> whatsapp ---------- */
+      const form = document.querySelector('#enquiry-form');
+      if(form){
+        form.addEventListener('submit', (e)=>{
+          e.preventDefault();
+          const name = form.name.value.trim();
+          const phone = form.phone.value.trim();
+          const email = form.email.value.trim();
+          const message = form.message.value.trim();
+          const text = `Hello ${BUSINESS_CONFIG.name},\n\nMy name is ${name}.\nI would like to make an enquiry.\n\nPhone: ${phone}\nEmail: ${email}\n\nMessage:\n${message}`;
+          window.open(waLink(text), '_blank');
+        });
+      }
+
+      /* ---------- scroll to top ---------- */
+      const topBtn = document.querySelector('.float-top');
+      if(topBtn){
+        window.addEventListener('scroll', ()=> topBtn.classList.toggle('show', window.scrollY>600), {passive:true});
+        topBtn.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
+      }
+    });
+
+
+
+</script>
+</body>
+</html>
