@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin | A.Vanderpuije Clothing</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="assets/images/avanderpuije-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" referrerpolicy="no-referrer">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+  :root{
+    --ink:#141F36; --ink-2:#1E2E52; --ivory:#F7F1E6; --paper:#FCFAF5;
+    --rust:#A3402A; --rust-2:#8a3423; --gold:#BD8A2E; --charcoal:#211C18;
+    --line:rgba(20,31,54,0.14); --serif:'Fraunces',Georgia,serif; --sans:'Manrope',sans-serif;
+    --r-sm:10px; --r-md:16px; --r-pill:999px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:var(--sans);background:var(--paper);color:var(--charcoal);}
+  h1,h2,h3{font-family:var(--serif);font-weight:500;margin:0;}
+  a{color:inherit;}
+  button{font-family:var(--sans);cursor:pointer;}
+  input,select,textarea{font-family:var(--sans);font-size:.92rem;}
+
+  /* ---- config notice ---- */
+  .config-warning{
+    background:#fff3cd;color:#7a5b00;border-bottom:1px solid #f0d58c;
+    padding:12px 20px;font-size:.84rem;text-align:center;display:none;
+  }
+  .config-warning.show{display:block;}
+  .config-warning code{background:rgba(0,0,0,.06);padding:2px 6px;border-radius:4px;}
+
+  /* ---- login screen ---- */
+  .login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;}
+  .login-box{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-md);padding:40px 34px;max-width:380px;width:100%;box-shadow:0 30px 60px -30px rgba(20,20,30,.3);}
+  .login-box img{height:48px;width:48px;border-radius:50%;margin-bottom:16px;}
+  .login-box h1{font-size:1.4rem;}
+  .login-box p{color:rgba(33,28,24,.6);font-size:.88rem;margin-top:8px;}
+  .field{margin-top:18px;}
+  .field label{display:block;font-size:.78rem;color:rgba(33,28,24,.6);margin-bottom:6px;}
+  .field input,.field select,.field textarea{
+    width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:var(--r-sm);
+    background:var(--paper);color:var(--charcoal);
+  }
+  .field textarea{min-height:80px;resize:vertical;}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    padding:12px 22px;border-radius:var(--r-pill);border:1px solid var(--rust);
+    background:var(--rust);color:var(--ivory);font-size:.86rem;width:100%;margin-top:22px;
+    transition:background .25s;
+  }
+  .btn:hover{background:var(--rust-2);}
+  .btn.secondary{background:none;color:var(--ink);border-color:var(--line);width:auto;margin-top:0;}
+  .btn.danger{background:none;color:var(--rust);border-color:var(--rust);width:auto;margin-top:0;padding:8px 14px;font-size:.78rem;}
+  .error-msg{color:var(--rust);font-size:.84rem;margin-top:14px;display:none;}
+  .error-msg.show{display:block;}
+
+  /* ---- dashboard shell ---- */
+  .dash{display:none;}
+  .dash.show{display:block;}
+  .dash-header{
+    background:var(--ink);color:var(--ivory);padding:18px 28px;
+    display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10;
+  }
+  .dash-header .brand{display:flex;align-items:center;gap:12px;}
+  .dash-header .brand img{height:34px;width:34px;border-radius:50%;}
+  .dash-header .brand span{font-family:var(--serif);font-size:1.05rem;}
+  .dash-nav{display:flex;gap:6px;}
+  .dash-nav button{
+    background:none;border:0;color:rgba(247,241,230,.7);padding:8px 16px;border-radius:var(--r-pill);font-size:.84rem;
+  }
+  .dash-nav button.active{background:rgba(247,241,230,.12);color:var(--ivory);}
+  .dash-body{padding:30px 28px;max-width:1100px;margin:0 auto;}
+  .dash-section{display:none;}
+  .dash-section.active{display:block;}
+  .dash-section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;flex-wrap:wrap;gap:12px;}
+  .dash-section-head h2{font-size:1.4rem;}
+
+  table{width:100%;border-collapse:collapse;background:var(--paper);border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;}
+  th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-size:.86rem;}
+  th{background:var(--ivory);font-size:.72rem;letter-spacing:.06em;color:rgba(33,28,24,.6);}
+  td img{width:40px;height:52px;object-fit:cover;border-radius:6px;}
+  tr:last-child td{border-bottom:0;}
+  .pill-tag{display:inline-block;background:var(--ivory);color:rgba(33,28,24,.7);font-size:.72rem;padding:3px 8px;border-radius:var(--r-pill);margin-right:4px;}
+  .status-pending{color:var(--gold);}
+  .status-paid{color:#2a7a4b;}
+  .row-actions{display:flex;gap:8px;}
+
+  .product-form{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-md);padding:26px;margin-bottom:26px;display:none;}
+  .product-form.show{display:block;}
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .form-grid .full{grid-column:1/-1;}
+  .checkbox-row{display:flex;gap:16px;flex-wrap:wrap;margin-top:6px;}
+  .checkbox-row label{display:flex;align-items:center;gap:6px;font-size:.84rem;font-weight:normal;color:var(--charcoal);}
+  .form-actions{display:flex;gap:10px;margin-top:20px;}
+  .form-actions .btn{width:auto;margin-top:0;}
+  .empty-note{color:rgba(33,28,24,.5);font-size:.88rem;padding:30px;text-align:center;}
+  @media (max-width:700px){
+    .form-grid{grid-template-columns:1fr;}
+    .dash-header{flex-direction:column;gap:12px;align-items:flex-start;}
+    .dash-body{padding:20px 16px;}
+    table{display:block;overflow-x:auto;}
+  }
+</style>
+</head>
+<body>
+
+  <!-- =========================================================
+       CONFIG — fill these in once your Supabase project exists.
+       Dashboard → Project Settings → API → Project URL / anon public key
+       ========================================================= -->
+  <script>
+    const SUPABASE_URL = "https://wthezwvsgkhzngohxqfu.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind0aGV6d3ZzZ2toem5nb2h4cWZ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE1ODgwMjQsImV4cCI6MjEwNzE2NDAyNH0.BAM-_8zwX58t28ZOJkhOINSjgsvPBAcm5jFBgjeakb0";
+  </script>
+
+  <div class="config-warning" id="config-warning">
+    This admin page is not connected yet — open <code>admin.html</code> in a code editor and
+    replace <code>SUPABASE_URL</code> and <code>SUPABASE_ANON_KEY</code> near the top of the file
+    with your real Supabase project values (see the setup guide).
+  </div>
+
+  <div class="login-screen" id="login-screen">
+    <div class="login-box">
+      <img src="assets/images/avanderpuije-logo.png" alt="A.Vanderpuije Clothing logo">
+      <h1>Admin Sign In</h1>
+      <p>Log in to manage products and view orders.</p>
+      <form id="login-form">
+        <div class="field">
+          <label for="login-email">Email</label>
+          <input id="login-email" type="email" required placeholder="you@avanderpuije.com">
+        </div>
+        <div class="field">
+          <label for="login-password">Password</label>
+          <input id="login-password" type="password" required placeholder="Your password">
+        </div>
+        <button type="submit" class="btn">Sign In</button>
+        <p class="error-msg" id="login-error"></p>
+      </form>
+      <p style="margin-top:18px;font-size:.78rem;color:rgba(33,28,24,.5);">
+        Admin accounts are created from your Supabase Dashboard (Authentication → Users → Add user) —
+        see the setup guide for the exact steps.
+      </p>
+    </div>
+  </div>
+
+  <div class="dash" id="dash">
+    <div class="dash-header">
+      <div class="brand">
+        <img src="assets/images/avanderpuije-logo.png" alt="A.Vanderpuije Clothing logo">
+        <span>Admin Dashboard</span>
+      </div>
+      <div class="dash-nav">
+        <button data-section="products" class="active">Products</button>
+        <button data-section="orders">Orders</button>
+        <button data-section="faq">FAQ</button>
+      </div>
+      <button class="btn secondary" id="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Log Out</button>
+    </div>
+
+    <div class="dash-body">
+
+      <!-- PRODUCTS -->
+      <div class="dash-section active" id="section-products">
+        <div class="dash-section-head">
+          <h2>Products</h2>
+          <button class="btn secondary" id="new-product-btn" style="background:var(--rust);color:var(--ivory);border-color:var(--rust);">
+            <i class="fa-solid fa-plus"></i> Add Product
+          </button>
+        </div>
+
+        <form class="product-form" id="product-form">
+          <h3 id="product-form-title" style="font-size:1.1rem;margin-bottom:18px;">New Product</h3>
+          <input type="hidden" id="p-id">
+          <div class="form-grid">
+            <div class="field full">
+              <label for="p-name">Product name</label>
+              <textarea id="p-name" required placeholder="Corset-style top with full flare skirt (2-piece set)" style="min-height:56px;"></textarea>
+              <p style="font-size:.76rem;color:rgba(33,28,24,.5);margin-top:6px;">This full description is what shows on the shop card — write it the way you want customers to see it.</p>
+            </div>
+            <div class="field"><label for="p-size">Size</label><input id="p-size" required placeholder="12-16"></div>
+            <div class="field"><label for="p-price">Price (GH₵)</label><input id="p-price" type="number" step="0.01" min="0" required placeholder="680"></div>
+            <div class="field"><label for="p-stock">Stock quantity</label><input id="p-stock" type="number" min="0" required placeholder="6"></div>
+            <div class="field">
+              <label for="p-cat-select">Category</label>
+              <select id="p-cat-select" required>
+                <option value="two-piece">Two Piece Set</option>
+                <option value="boubous-maxis">Boubous &amp; Maxis</option>
+                <option value="blacks">Blacks</option>
+                <option value="prints">Prints</option>
+                <option value="occasions">Occasions</option>
+                <option value="pants-set">Pants Set</option>
+                <option value="kaftans">Kaftans</option>
+              </select>
+            </div>
+            <div class="field full"><label for="p-desc">Extra details (optional)</label><textarea id="p-desc" placeholder="Anything else worth mentioning — fabric, fit notes, etc."></textarea></div>
+            <div class="field full">
+              <label><input type="checkbox" id="p-featured"> Feature this piece on the homepage</label>
+            </div>
+            <div class="field full">
+              <label for="p-code">Internal code (optional, for your own tracking — not shown to customers)</label>
+              <input id="p-code" placeholder="AV 1012">
+            </div>
+            <div class="field full">
+              <label for="p-image">Product image</label>
+              <input id="p-image" type="file" accept="image/*">
+              <input type="hidden" id="p-image-url">
+              <p style="font-size:.78rem;color:rgba(33,28,24,.5);margin-top:6px;">Uploads to your Supabase "product-images" storage bucket.</p>
+            </div>
+            <div class="field">
+              <label><input type="checkbox" id="p-active" checked> Active (visible in the shop)</label>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn" style="width:auto;">Save Product</button>
+            <button type="button" class="btn secondary" id="cancel-product-btn">Cancel</button>
+          </div>
+          <p class="error-msg" id="product-error"></p>
+        </form>
+
+        <div id="products-table-wrap">
+          <p class="empty-note">Loading products…</p>
+        </div>
+      </div>
+
+      <!-- FAQ (chat assistant answers) -->
+      <div class="dash-section" id="section-faq">
+        <div class="dash-section-head">
+          <h2>Chat Assistant FAQ</h2>
+          <button class="btn secondary" id="new-faq-btn" style="background:var(--rust);color:var(--ivory);border-color:var(--rust);"><i class="fa-solid fa-plus"></i> Add Answer</button>
+        </div>
+        <p style="font-size:.86rem;color:rgba(33,28,24,.6);margin:-8px 0 18px;max-width:640px;">When a customer asks something in the chat, the assistant looks here first. Add the question, the words people might type, and your answer. It goes live in seconds.</p>
+        <form class="product-form" id="faq-form">
+          <h3 id="faq-form-title" style="font-size:1.1rem;margin-bottom:18px;">New Answer</h3>
+          <input type="hidden" id="f-id">
+          <div class="form-grid">
+            <div class="field full"><label for="f-question">Question</label><input id="f-question" required placeholder="Do you make custom outfits?"></div>
+            <div class="field full"><label for="f-keywords">Words customers might type (separate with commas)</label><input id="f-keywords" placeholder="custom, made to measure, tailor, bespoke"></div>
+            <div class="field full"><label for="f-answer">Your answer</label><textarea id="f-answer" required placeholder="Yes! Message us on WhatsApp with your idea and measurements."></textarea></div>
+            <div class="field"><label><input type="checkbox" id="f-button"> Show as a quick button in the chat</label></div>
+            <div class="field"><label><input type="checkbox" id="f-active" checked> Active</label></div>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn" style="width:auto;">Save Answer</button>
+            <button type="button" class="btn secondary" id="cancel-faq-btn">Cancel</button>
+          </div>
+          <p class="error-msg" id="faq-error"></p>
+        </form>
+        <div id="faq-table-wrap"><p class="empty-note">Loading…</p></div>
+      </div>
+
+      <!-- ORDERS -->
+      <div class="dash-section" id="section-orders">
+        <div class="dash-section-head"><h2>Orders</h2></div>
+        <div id="orders-table-wrap">
+          <p class="empty-note">Loading orders…</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+<script>
+  let supabaseClient = null;
+  const configured = !SUPABASE_URL.startsWith("REPLACE") && !SUPABASE_ANON_KEY.startsWith("REPLACE");
+
+  if (configured && window.supabase) {
+    supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  } else {
+    document.getElementById('config-warning').classList.add('show');
+  }
+
+  const loginScreen = document.getElementById('login-screen');
+  const dash = document.getElementById('dash');
+  const loginForm = document.getElementById('login-form');
+  const loginError = document.getElementById('login-error');
+
+  function showDash(){ loginScreen.style.display = 'none'; dash.classList.add('show'); loadProducts(); loadOrders(); loadFaqs(); }
+  function showLogin(){ loginScreen.style.display = 'flex'; dash.classList.remove('show'); }
+
+  async function checkSession(){
+    if(!supabaseClient) return;
+    const { data } = await supabaseClient.auth.getSession();
+    if(data.session){ showDash(); } else { showLogin(); }
+  }
+  checkSession();
+
+  loginForm.addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    loginError.classList.remove('show');
+    if(!supabaseClient){
+      loginError.textContent = 'Not connected to Supabase yet — see the setup guide.';
+      loginError.classList.add('show');
+      return;
+    }
+    const email = document.getElementById('login-email').value.trim();
+    const password = document.getElementById('login-password').value;
+    const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
+    if(error){
+      loginError.textContent = error.message;
+      loginError.classList.add('show');
+      return;
+    }
+    showDash();
+  });
+
+  document.getElementById('logout-btn').addEventListener('click', async ()=>{
+    if(supabaseClient) await supabaseClient.auth.signOut();
+    showLogin();
+  });
+
+  /* ---- tab switching ---- */
+  document.querySelectorAll('.dash-nav button').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('.dash-nav button').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.dash-section').forEach(s=>s.classList.remove('active'));
+      document.getElementById('section-' + btn.dataset.section).classList.add('active');
+    });
+  });
+
+  /* ---- products ---- */
+  const productForm = document.getElementById('product-form');
+  const newProductBtn = document.getElementById('new-product-btn');
+  const cancelProductBtn = document.getElementById('cancel-product-btn');
+  const productError = document.getElementById('product-error');
+
+  function resetProductForm(){
+    productForm.reset();
+    document.getElementById('p-id').value = '';
+    document.getElementById('p-image-url').value = '';
+    document.getElementById('product-form-title').textContent = 'New Product';
+    productError.classList.remove('show');
+  }
+
+  newProductBtn.addEventListener('click', ()=>{
+    resetProductForm();
+    productForm.classList.add('show');
+  });
+  cancelProductBtn.addEventListener('click', ()=>{
+    productForm.classList.remove('show');
+  });
+
+  async function loadProducts(){
+    const wrap = document.getElementById('products-table-wrap');
+    if(!supabaseClient){
+      wrap.innerHTML = '<p class="empty-note">Connect Supabase to see your products here.</p>';
+      return;
+    }
+    const { data, error } = await supabaseClient.from('products').select('*').order('created_at', { ascending: false });
+    if(error){ wrap.innerHTML = `<p class="empty-note">Could not load products: ${error.message}</p>`; return; }
+    if(!data || !data.length){ wrap.innerHTML = '<p class="empty-note">No products yet — click "Add Product" to create your first one.</p>'; return; }
+
+    const CATEGORY_LABELS = {
+      "two-piece": "Two Piece Set", "boubous-maxis": "Boubous & Maxis", "blacks": "Blacks",
+      "prints": "Prints", "occasions": "Occasions", "pants-set": "Pants Set", "kaftans": "Kaftans"
+    };
+
+    wrap.innerHTML = `
+      <table>
+        <thead><tr><th>Image</th><th>Name</th><th>Size</th><th>Price</th><th>Stock</th><th>Category</th><th>Status</th><th></th></tr></thead>
+        <tbody>
+          ${data.map(p => `
+            <tr>
+              <td>${p.image_url ? `<img src="${escHtml(p.image_url)}" alt="${escHtml(p.name)}">` : ''}</td>
+              <td style="max-width:260px;">${escHtml(p.name)}${p.featured ? ' <span class="pill-tag">Featured</span>' : ''}</td>
+              <td>${escHtml(p.size)}</td>
+              <td>GH₵${Number(p.price).toFixed(2)}</td>
+              <td>${p.stock}</td>
+              <td><span class="pill-tag">${CATEGORY_LABELS[p.category] || p.category || ''}</span></td>
+              <td>${p.active ? '<span class="status-paid">Active</span>' : '<span class="status-pending">Hidden</span>'}</td>
+              <td class="row-actions">
+                <button class="btn danger" data-edit="${p.id}">Edit</button>
+                <button class="btn danger" data-delete="${p.id}">Delete</button>
+              </td>
+            </tr>`).join('')}
+        </tbody>
+      </table>`;
+
+    wrap.querySelectorAll('[data-edit]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const p = data.find(x => x.id === btn.dataset.edit);
+        if(!p) return;
+        resetProductForm();
+        document.getElementById('product-form-title').textContent = 'Edit Product';
+        document.getElementById('p-id').value = p.id;
+        document.getElementById('p-code').value = p.code || '';
+        document.getElementById('p-name').value = p.name;
+        document.getElementById('p-size').value = p.size || '';
+        document.getElementById('p-price').value = p.price;
+        document.getElementById('p-stock').value = p.stock;
+        document.getElementById('p-desc').value = p.description || '';
+        document.getElementById('p-image-url').value = p.image_url || '';
+        document.getElementById('p-active').checked = p.active;
+        document.getElementById('p-featured').checked = !!p.featured;
+        document.getElementById('p-cat-select').value = p.category || 'occasions';
+        productForm.classList.add('show');
+        productForm.scrollIntoView({behavior:'smooth'});
+      });
+    });
+    wrap.querySelectorAll('[data-delete]').forEach(btn=>{
+      btn.addEventListener('click', async ()=>{
+        if(!confirm('Delete this product? This cannot be undone.')) return;
+        const { error } = await supabaseClient.from('products').delete().eq('id', btn.dataset.delete);
+        if(error){ alert('Could not delete: ' + error.message); return; }
+        loadProducts();
+      });
+    });
+  }
+
+  productForm.addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    productError.classList.remove('show');
+    if(!supabaseClient){
+      productError.textContent = 'Not connected to Supabase yet — see the setup guide.';
+      productError.classList.add('show');
+      return;
+    }
+    const id = document.getElementById('p-id').value;
+    const imageFile = document.getElementById('p-image').files[0];
+    let imageUrl = document.getElementById('p-image-url').value;
+
+    if(imageFile){
+      const filePath = `${Date.now()}_${imageFile.name}`;
+      const { error: uploadError } = await supabaseClient.storage.from('product-images').upload(filePath, imageFile);
+      if(uploadError){
+        productError.textContent = 'Image upload failed: ' + uploadError.message;
+        productError.classList.add('show');
+        return;
+      }
+      const { data: pub } = supabaseClient.storage.from('product-images').getPublicUrl(filePath);
+      imageUrl = pub.publicUrl;
+    }
+
+    const payload = {
+      code: document.getElementById('p-code').value.trim(),
+      name: document.getElementById('p-name').value.trim(),
+      size: document.getElementById('p-size').value.trim(),
+      description: document.getElementById('p-desc').value.trim(),
+      price: parseFloat(document.getElementById('p-price').value),
+      stock: parseInt(document.getElementById('p-stock').value, 10),
+      category: document.getElementById('p-cat-select').value,
+      featured: document.getElementById('p-featured').checked,
+      image_url: imageUrl,
+      active: document.getElementById('p-active').checked
+    };
+
+    const { error } = id
+      ? await supabaseClient.from('products').update(payload).eq('id', id)
+      : await supabaseClient.from('products').insert(payload);
+
+    if(error){
+      productError.textContent = 'Could not save: ' + error.message;
+      productError.classList.add('show');
+      return;
+    }
+    productForm.classList.remove('show');
+    loadProducts();
+  });
+
+
+  /* ---- chat FAQ ---- */
+  const faqForm = document.getElementById('faq-form');
+  const faqError = document.getElementById('faq-error');
+  const escHtml = (s) => String(s==null?'':s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  document.getElementById('new-faq-btn').addEventListener('click', ()=>{
+    faqForm.reset(); document.getElementById('f-id').value=''; document.getElementById('f-active').checked=true;
+    document.getElementById('faq-form-title').textContent='New Answer'; faqError.classList.remove('show'); faqForm.classList.add('show');
+  });
+  document.getElementById('cancel-faq-btn').addEventListener('click', ()=> faqForm.classList.remove('show'));
+
+  async function loadFaqs(){
+    const wrap = document.getElementById('faq-table-wrap');
+    if(!supabaseClient){ wrap.innerHTML = '<p class="empty-note">Connect Supabase to manage chat answers.</p>'; return; }
+    const { data, error } = await supabaseClient.from('faqs').select('*').order('created_at', { ascending:false });
+    if(error){ wrap.innerHTML = `<p class="empty-note">Could not load answers: ${escHtml(error.message)}. Have you run the latest supabase-schema.sql?</p>`; return; }
+    if(!data.length){ wrap.innerHTML = '<p class="empty-note">No custom answers yet. Click "Add Answer" to teach the chat assistant something new.</p>'; return; }
+    wrap.innerHTML = `<table><thead><tr><th>Question</th><th>Keywords</th><th>Answer</th><th>Status</th><th></th></tr></thead><tbody>${
+      data.map(f=>`<tr><td>${escHtml(f.question)}</td><td>${escHtml(f.keywords)}</td><td style="max-width:280px;">${escHtml(f.answer)}</td><td>${f.active?'<span class="status-paid">Active</span>':'<span class="status-pending">Hidden</span>'}</td><td class="row-actions"><button class="btn danger" data-fedit="${f.id}">Edit</button><button class="btn danger" data-fdel="${f.id}">Delete</button></td></tr>`).join('')
+    }</tbody></table>`;
+    wrap.querySelectorAll('[data-fedit]').forEach(b=>b.addEventListener('click', ()=>{
+      const f = data.find(x=>x.id===b.dataset.fedit); if(!f) return;
+      document.getElementById('f-id').value=f.id; document.getElementById('f-question').value=f.question;
+      document.getElementById('f-keywords').value=f.keywords||''; document.getElementById('f-answer').value=f.answer;
+      document.getElementById('f-button').checked=!!f.show_button; document.getElementById('f-active').checked=!!f.active;
+      document.getElementById('faq-form-title').textContent='Edit Answer'; faqForm.classList.add('show'); faqForm.scrollIntoView({behavior:'smooth'});
+    }));
+    wrap.querySelectorAll('[data-fdel]').forEach(b=>b.addEventListener('click', async ()=>{
+      if(!confirm('Delete this answer?')) return;
+      const { error } = await supabaseClient.from('faqs').delete().eq('id', b.dataset.fdel);
+      if(error){ alert('Could not delete: '+error.message); return; } loadFaqs();
+    }));
+  }
+  faqForm.addEventListener('submit', async (e)=>{
+    e.preventDefault(); faqError.classList.remove('show');
+    if(!supabaseClient){ faqError.textContent='Not connected to Supabase.'; faqError.classList.add('show'); return; }
+    const id = document.getElementById('f-id').value;
+    const payload = {
+      question: document.getElementById('f-question').value.trim(),
+      keywords: document.getElementById('f-keywords').value.trim(),
+      answer: document.getElementById('f-answer').value.trim(),
+      show_button: document.getElementById('f-button').checked,
+      active: document.getElementById('f-active').checked
+    };
+    const { error } = id ? await supabaseClient.from('faqs').update(payload).eq('id', id) : await supabaseClient.from('faqs').insert(payload);
+    if(error){ faqError.textContent='Could not save: '+error.message; faqError.classList.add('show'); return; }
+    faqForm.classList.remove('show'); loadFaqs();
+  });
+
+  /* ---- orders (read only) ---- */
+  async function loadOrders(){
+    const wrap = document.getElementById('orders-table-wrap');
+    if(!supabaseClient){
+      wrap.innerHTML = '<p class="empty-note">Connect Supabase to see orders here.</p>';
+      return;
+    }
+    const { data, error } = await supabaseClient.from('orders').select('*').order('created_at', { ascending: false }).limit(100);
+    if(error){ wrap.innerHTML = `<p class="empty-note">Could not load orders: ${error.message}</p>`; return; }
+    if(!data || !data.length){ wrap.innerHTML = '<p class="empty-note">No orders yet.</p>'; return; }
+
+    wrap.innerHTML = `
+      <table>
+        <thead><tr><th>Reference</th><th>Customer</th><th>Phone</th><th>Delivery address</th><th>Total</th><th>Status</th><th>Date</th></tr></thead>
+        <tbody>
+          ${data.map(o => `
+            <tr>
+              <td>${escHtml(o.reference)}</td>
+              <td>${escHtml(o.customer_name)}<br><span style="font-size:.74rem;color:rgba(33,28,24,.5);">${escHtml(o.email)}</span></td>
+              <td>${escHtml(o.phone)}</td>
+              <td style="max-width:200px;">${escHtml(o.address)}</td>
+              <td>GH₵${Number(o.total).toFixed(2)}</td>
+              <td><select data-order-status="${o.id}" style="padding:6px 8px;border:1px solid var(--line);border-radius:6px;">
+                ${['awaiting_confirmation','paid','fulfilled','cancelled'].map(s=>`<option value="${s}" ${o.status===s?'selected':''}>${s.replace('_',' ')}</option>`).join('')}
+              </select></td>
+              <td>${new Date(o.created_at).toLocaleDateString()}</td>
+            </tr>`).join('')}
+        </tbody>
+      </table>
+      <p style="font-size:.78rem;color:rgba(33,28,24,.55);margin-top:12px;">New orders arrive as "awaiting confirmation". Match the reference with the payment in your Paystack dashboard, then set it to Paid.</p>`;
+    wrap.querySelectorAll('[data-order-status]').forEach(sel=>sel.addEventListener('change', async ()=>{
+      const { error } = await supabaseClient.from('orders').update({ status: sel.value }).eq('id', sel.dataset.orderStatus);
+      if(error){ alert('Could not update: ' + error.message); loadOrders(); }
+    }));
+  }
+</script>
+</body>
+</html>
