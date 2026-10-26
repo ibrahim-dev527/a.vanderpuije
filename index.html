@@ -152,9 +152,9 @@
       position:fixed;top:0;left:0;bottom:0;width:min(360px,84vw);background:var(--ink);z-index:300;
       display:flex;flex-direction:column;padding:26px 26px;
       transform:translateX(-100%);transition:transform .5s var(--ease);
-      box-shadow:26px 0 60px -20px rgba(0,0,0,.5);
+      box-shadow:none;
     }
-    .mobile-panel.open{transform:translateX(0);}
+    .mobile-panel.open{transform:translateX(0);box-shadow:26px 0 60px -20px rgba(0,0,0,.5);}
     .mobile-panel-top{display:flex;align-items:center;justify-content:space-between;}
     .mobile-panel-top .brand img{height:40px;width:40px;}
     .mobile-panel .close-btn{background:none;border:0;color:var(--ivory);}
@@ -817,6 +817,82 @@
     .install-no{background:none;border:0;color:rgba(247,241,230,.65);font-size:.74rem;cursor:pointer;padding:4px;}
     @media (max-width:520px){.install-banner{bottom:84px;}}
 
+    /* ---------- HOME: light hero (Miss Dee style) ---------- */
+    body.home-light header.site-nav,
+    body.home-light header.site-nav.scrolled{background:var(--paper);backdrop-filter:none;border-bottom:1px solid var(--line);box-shadow:none;}
+    body.home-light header.site-nav.scrolled{box-shadow:0 12px 28px -20px rgba(20,31,54,.4);}
+    body.home-light .brand{color:var(--ink);}
+    body.home-light .brand-text span{opacity:.6;}
+    body.home-light nav.links > a,
+    body.home-light nav.links > .nav-item > a{color:var(--charcoal);}
+    body.home-light .bag-btn,body.home-light .burger{color:var(--ink);}
+    body.home-light .nav-cta:hover{background:var(--rust-2);border-color:var(--rust-2);}
+    .hero-light{
+      background:linear-gradient(120deg,#F9F7F2 0%,#F3EBE3 55%,#EFE3DA 100%);
+      padding:76px 0 70px;overflow:hidden;
+    }
+    .hl-eyebrow{display:block;font-size:.82rem;letter-spacing:.28em;color:rgba(33,28,24,.6);}
+    .hero-light h1{font-size:clamp(2.8rem,6.6vw,5.4rem);line-height:1.04;font-weight:400;margin-top:26px;color:var(--charcoal);}
+    .hl-lede{margin-top:22px;font-size:1.15rem;color:rgba(33,28,24,.66);max-width:540px;line-height:1.65;}
+    .hl-actions{display:flex;gap:16px;margin-top:34px;flex-wrap:wrap;}
+    .hero-light .btn-ghost-dark{background:rgba(255,255,255,.6);border-color:rgba(33,28,24,.28);color:var(--charcoal);}
+    .hero-light .btn-ghost-dark:hover{background:var(--ink);color:var(--ivory);border-color:var(--ink);}
+    .hl-up{opacity:0;transform:translateY(22px);animation:hlUp .9s var(--ease) var(--d,0s) forwards;}
+    @keyframes hlUp{to{opacity:1;transform:translateY(0);}}
+    body.preloading .hl-up{animation-play-state:paused;}
+    .hl-rail{margin-top:60px;overflow:hidden;touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none;}
+    .hl-rail:active{cursor:grabbing;}
+    .hl-track{display:flex;gap:22px;width:max-content;will-change:transform;}
+    .hl-card{flex:0 0 auto;width:calc((100vw - 48px) / 2);max-width:310px;cursor:pointer;}
+    .hl-card:focus-visible{outline:2px solid var(--rust);outline-offset:4px;}
+    .hl-img{aspect-ratio:3/4;overflow:hidden;background:#EAE3DA;}
+    .hl-img img{width:100%;height:100%;object-fit:cover;object-position:center 15%;pointer-events:none;-webkit-user-drag:none;}
+    .hl-meta{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:14px 2px 0;}
+    .hl-name{font-size:.84rem;font-weight:600;line-height:1.4;color:var(--charcoal);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+    .hl-price{font-family:var(--serif);font-size:.98rem;font-weight:600;color:var(--ink);white-space:nowrap;}
+    @media (min-width:700px){.hl-track{gap:30px;}}
+    @media (prefers-reduced-motion:reduce){.hl-up{animation:none;opacity:1;transform:none;}}
+    .curated-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:34px;}
+    .curated-head .kicker{font-size:.78rem;letter-spacing:.2em;color:rgba(33,28,24,.6);display:block;margin-bottom:12px;}
+    .curated-head h2{font-size:clamp(2rem,4vw,3rem);font-weight:400;}
+    .view-all{font-size:.95rem;border-bottom:1.5px solid var(--charcoal);padding-bottom:4px;white-space:nowrap;transition:color .3s,border-color .3s;}
+    .view-all:hover{color:var(--rust);border-color:var(--rust);}
+
+    /* ---------- CHATBOT BUTTON (robot) ---------- */
+    .chat-fab{
+      padding:8px 18px 8px 8px !important;gap:11px !important;right:22px !important;bottom:22px !important;
+      background:var(--ink);border:1.5px solid var(--gold) !important;border-radius:999px !important;
+    }
+    .chat-fab-bot{
+      width:46px;height:46px;border-radius:50%;background:rgba(189,138,46,.18);color:var(--ivory);
+      display:flex;align-items:center;justify-content:center;flex-shrink:0;animation:botBob 3.2s ease-in-out infinite;
+    }
+    .chat-fab-bot svg,.chat-head-bot svg{width:32px !important;height:32px !important;color:var(--ivory) !important;}
+    .bot-eye{fill:var(--gold);animation:botBlink 4s infinite;transform-origin:center;transform-box:fill-box;}
+    .bot-led{fill:var(--gold);animation:botLed 1.6s ease-in-out infinite;}
+    @keyframes botBob{0%,100%{transform:translateY(0);}50%{transform:translateY(-3px);}}
+    @keyframes botBlink{0%,92%,100%{transform:scaleY(1);}96%{transform:scaleY(.1);}}
+    @keyframes botLed{0%,100%{opacity:1;}50%{opacity:.25;}}
+    .chat-fab-text{display:flex;flex-direction:column;line-height:1.2;text-align:left;}
+    .chat-fab-text strong{font-size:.9rem;letter-spacing:.02em;}
+    .chat-fab-text em{font-style:normal;font-size:.7rem;color:rgba(247,241,230,.72);}
+    .chat-hint{
+      position:fixed;right:22px;bottom:92px;z-index:161;max-width:230px;padding:12px 14px;background:var(--paper);color:var(--charcoal);
+      border:1px solid var(--line);border-radius:12px;border-bottom-right-radius:3px;font-size:.84rem;line-height:1.45;
+      box-shadow:0 18px 40px -16px rgba(0,0,0,.45);opacity:0;visibility:hidden;transform:translateY(10px);
+      transition:opacity .4s var(--ease),transform .4s var(--ease),visibility .4s;
+    }
+    .chat-hint.show{opacity:1;visibility:visible;transform:translateY(0);}
+    .chat-head-bot{width:42px;height:42px;border-radius:50%;background:rgba(189,138,46,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    @media (max-width:560px){
+      .chat-fab{right:12px !important;bottom:14px !important;padding:6px 14px 6px 6px !important;}
+      .chat-fab-bot{width:40px;height:40px;}
+      .chat-fab-text strong{font-size:.82rem;}
+      .chat-fab-text em{font-size:.64rem;}
+      .chat-hint{right:12px;bottom:80px;}
+    }
+    @media (prefers-reduced-motion:reduce){.chat-fab-bot,.bot-eye,.bot-led{animation:none;}}
+
 </style>
 </head>
 <body>
@@ -928,7 +1004,9 @@
 
   
 
-<script>document.body.classList.add('preloading');</script>
+  
+
+<script>document.body.classList.add('preloading','home-light');</script>
   <div class="preloader" id="preloader" aria-hidden="true">
     <div class="preloader-inner">
       <div class="preloader-logo"><img src="assets/images/avanderpuije-logo.png" alt=""></div>
@@ -938,19 +1016,18 @@
     </div>
   </div>
 
-  <section class="hero" aria-label="Hero">
-    <div class="hero-bg">
-      <img src="assets/images/hero-corset-dress.jpg" alt="Model wearing an A.Vanderpuije corset-style top with a full flare skirt in a bold print" loading="eager">
-    </div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <span class="hero-eyebrow">NEW SEASON</span>
-      <h1>African style.<br>Redefined.</h1>
-      <p class="lede">Discover distinctive ready to wear pieces inspired by African prints and modern style — delivered anywhere in Ghana.</p>
-      <div class="hero-actions">
+  <section class="hero-light" aria-label="Welcome">
+    <div class="wrap">
+      <span class="hl-eyebrow hl-up" style="--d:.15s">NEW SEASON</span>
+      <h1 class="hl-up" style="--d:.3s">African style,<br>redefined.</h1>
+      <p class="hl-lede hl-up" style="--d:.45s">Distinctive prints and ready to wear pieces from Accra, delivered anywhere in Ghana.</p>
+      <div class="hl-actions hl-up" style="--d:.6s">
         <a href="collection.html" class="btn btn-primary">Shop now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="width:15px;height:15px;"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        <a href="about.html" class="btn btn-ghost-light">Our Story</a>
+        <a href="about.html" class="btn btn-ghost-dark">Our Story</a>
       </div>
+    </div>
+    <div class="hl-rail" id="hl-rail" aria-label="Featured pieces">
+      <div class="hl-track" id="hl-track"></div>
     </div>
   </section>
 
@@ -969,23 +1046,16 @@
     </div>
   </section>
 
-  <section aria-label="Featured collection" style="background:var(--ivory);">
+  <section aria-label="Curated pieces">
     <div class="wrap">
-      <div class="section-head">
-        <span class="kicker">THE COLLECTION</span>
-        <h2>Explore selected looks</h2>
-        <p>A running edit of pieces from A.Vanderpuije Clothing — prices shown, pay securely at checkout.</p>
-      </div>
-      <div class="carousel-shell reveal-up" data-autoplay>
-        <div class="carousel-track" id="home-rail"></div>
-        <div class="carousel-nav">
-          <div class="dots"></div>
-          <div class="carousel-arrows">
-            <button class="arrow-btn prev" aria-label="Previous look"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polyline points="15 18 9 12 15 6"/></svg></button>
-            <button class="arrow-btn next" aria-label="Next look"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polyline points="9 18 15 12 9 6"/></svg></button>
-          </div>
+      <div class="curated-head reveal-up">
+        <div>
+          <span class="kicker">CURATED</span>
+          <h2>Pieces we love</h2>
         </div>
+        <a href="collection.html" class="view-all">View all</a>
       </div>
+      <div class="collection-grid" id="home-grid"></div>
     </div>
   </section>
 
@@ -1076,7 +1146,6 @@
       <button class="btn btn-primary" id="welcome-cta">Explore the Collection</button>
     </div>
   </div>
-
 <footer>
     <div class="wrap">
       <div class="footer-grid">
@@ -1136,14 +1205,15 @@
   </div>
 
   <!-- Chat assistant -->
-  <button type="button" class="chat-fab" id="chat-fab" aria-label="Open chat assistant">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>
-    <span class="chat-fab-label">Ask us</span>
+  <button type="button" class="chat-fab" id="chat-fab" aria-label="Open the chatbot. Ask me anything.">
+    <span class="chat-fab-bot"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="24" y1="9" x2="24" y2="4.5"/><circle class="bot-led" cx="24" cy="3.5" r="2.4" stroke="none"/><rect x="9" y="9" width="30" height="24" rx="8"/><line x1="4.5" y1="18" x2="4.5" y2="25"/><line x1="43.5" y1="18" x2="43.5" y2="25"/><circle class="bot-eye" cx="18" cy="20" r="3.2" stroke="none"/><circle class="bot-eye" cx="30" cy="20" r="3.2" stroke="none"/><path d="M17.5 27.5h13"/><rect x="15" y="36" width="18" height="8" rx="3"/></svg></span>
+    <span class="chat-fab-text"><strong>Chatbot</strong><em>Ask me anything</em></span>
   </button>
+  <div class="chat-hint" id="chat-hint" role="status">Hi, I am the chatbot. Ask me anything about our shop.</div>
   <section class="chat-panel" id="chat-panel" aria-label="Chat assistant" aria-hidden="true">
     <header class="chat-head">
-      <img src="assets/images/avanderpuije-logo.png" alt="">
-      <div class="chat-head-text"><strong>A.Vanderpuije Assistant</strong><span>Quick answers, any time</span></div>
+      <span class="chat-head-bot"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="24" y1="9" x2="24" y2="4.5"/><circle class="bot-led" cx="24" cy="3.5" r="2.4" stroke="none"/><rect x="9" y="9" width="30" height="24" rx="8"/><line x1="4.5" y1="18" x2="4.5" y2="25"/><line x1="43.5" y1="18" x2="43.5" y2="25"/><circle class="bot-eye" cx="18" cy="20" r="3.2" stroke="none"/><circle class="bot-eye" cx="30" cy="20" r="3.2" stroke="none"/><path d="M17.5 27.5h13"/><rect x="15" y="36" width="18" height="8" rx="3"/></svg></span>
+      <div class="chat-head-text"><strong>Chatbot Assistant</strong><span>Online. Ask me anything.</span></div>
       <button type="button" class="chat-close" id="chat-close" aria-label="Close chat">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>
       </button>
@@ -1181,12 +1251,12 @@
             </div>
           </div>
           <button type="button" class="btn btn-primary qv-add-btn" style="width:100%;justify-content:center;">Add to Bag</button>
+          <a href="#" class="btn btn-ghost-dark" id="qv-order-wa" target="_blank" rel="noopener" style="width:100%;justify-content:center;margin-top:10px;"><i class="fa-brands fa-whatsapp"></i> Order this on WhatsApp</a>
           <a href="#" class="qv-wa-btn" data-wa><i class="fa-brands fa-whatsapp"></i> Ask a question on WhatsApp</a>
         </div>
       </div>
     </div>
   </div>
-
 <script>
 
     /* =========================================================
@@ -1325,8 +1395,43 @@
     function addToCart(productId, qty){
       const cart = getCart();
       const existing = cart.find(i => i.id === productId);
-      if(existing){ existing.qty += qty; } else { cart.push({id:productId, qty}); }
+      const prod = findProduct(productId);
+      const snap = prod ? { name: prod.name, size: prod.size, price: Number(prod.price), image: prod.image } : {};
+      if(existing){ existing.qty += qty; Object.assign(existing, snap); } else { cart.push(Object.assign({id:productId, qty}, snap)); }
       saveCart(cart);
+    }
+    // Every line in the bag, using the live product when available and the saved copy otherwise,
+    // so an item never disappears or gets swapped for a different one.
+    function cartLines(){
+      return getCart().map(i => {
+        const live = findProduct(i.id);
+        const src = live || i;
+        if(!src || !src.name) return null;
+        return { id:i.id, qty:i.qty, name:src.name, size:src.size || '', price:Number(src.price) || 0, image:src.image || '' };
+      }).filter(Boolean);
+    }
+    function clearBag(){
+      localStorage.removeItem(CART_KEY);
+      updateCartBadge();
+      renderBagPage();
+    }
+    // Builds the WhatsApp order text from exactly what is being ordered right now.
+    function buildOrderMessage(lines, customer){
+      const total = lines.reduce((s,l)=> s + l.price * l.qty, 0);
+      let msg = 'Hello ' + BUSINESS_CONFIG.name + ', I would like to order:\n\n';
+      lines.forEach((l, idx) => {
+        msg += (idx + 1) + '. ' + l.name + '\n   Size: ' + l.size + '\n   Quantity: ' + l.qty + '\n   Price: ' + formatGHS(l.price) + ' each\n   Subtotal: ' + formatGHS(l.price * l.qty) + '\n\n';
+      });
+      msg += 'Order total: ' + formatGHS(total) + '\n';
+      if(customer){
+        msg += '\nMy details:\n';
+        if(customer.name) msg += 'Name: ' + customer.name + '\n';
+        if(customer.phone) msg += 'Phone: ' + customer.phone + '\n';
+        if(customer.address) msg += 'Delivery address: ' + customer.address + '\n';
+        if(customer.notes) msg += 'Notes: ' + customer.notes + '\n';
+      }
+      msg += '\nPlease confirm availability and delivery.';
+      return msg;
     }
     function updateCartQty(productId, qty){
       let cart = getCart();
@@ -1343,10 +1448,7 @@
       return getCart().reduce((n,i)=>n+i.qty, 0);
     }
     function cartTotal(){
-      return getCart().reduce((sum,i)=>{
-        const p = findProduct(i.id);
-        return sum + (p ? p.price * i.qty : 0);
-      }, 0);
+      return cartLines().reduce((sum,l)=> sum + l.price * l.qty, 0);
     }
     function updateCartBadge(){
       const n = cartCount();
@@ -1370,7 +1472,7 @@
     function renderBagPage(){
       const body = document.getElementById('bag-body');
       if(!body) return;
-      const cart = getCart();
+      const cart = cartLines();
       const summaryWrap = document.getElementById('bag-summary-wrap');
       if(!cart.length){
         body.innerHTML = `
@@ -1384,8 +1486,7 @@
       }
       if(summaryWrap) summaryWrap.style.display = '';
       body.innerHTML = cart.map(item=>{
-        const p = findProduct(item.id);
-        if(!p) return '';
+        const p = item;
         return `
           <div class="cart-line">
             <img src="${escapeHTML(p.image)}" alt="${escapeHTML(p.name)}">
@@ -1449,7 +1550,7 @@
 
     document.addEventListener('DOMContentLoaded', async () => {
       const allProducts = await getProducts();
-      renderInto('home-rail', allProducts.filter(p => p.featured));
+      renderInto('home-grid', allProducts.filter(p => p.featured));
       renderInto('shop-grid', allProducts);
       renderBagPage();
       updateCartBadge();
@@ -1667,6 +1768,15 @@
         });
         quickview.querySelector('.qv-qty-dec').addEventListener('click', ()=>{ qty=Math.max(1,qty-1); qvQtyVal.textContent=qty; });
         quickview.querySelector('.qv-qty-inc').addEventListener('click', ()=>{ qty=qty+1; qvQtyVal.textContent=qty; });
+        const qvOrderWa = quickview.querySelector('#qv-order-wa');
+        const refreshQvOrder = () => {
+          if(!activeProduct || !qvOrderWa) return;
+          qvOrderWa.href = waLink(buildOrderMessage([{ name:activeProduct.name, size:activeProduct.size, price:Number(activeProduct.price), qty }]));
+        };
+        qvOrderWa && qvOrderWa.addEventListener('click', refreshQvOrder);
+        quickview.querySelector('.qv-qty-dec').addEventListener('click', refreshQvOrder);
+        quickview.querySelector('.qv-qty-inc').addEventListener('click', refreshQvOrder);
+        document.addEventListener('click', (e)=>{ if(e.target.closest('[data-open-quickview]')) setTimeout(refreshQvOrder, 0); });
         qvAddBtn.addEventListener('click', ()=>{
           if(!activeProduct) return;
           addToCart(activeProduct.id, qty);
@@ -1755,18 +1865,30 @@
         topBtn.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
       }
 
+      /* ---------- bag page buttons ---------- */
+      const bagWa = document.getElementById('bag-wa-order');
+      if(bagWa){
+        bagWa.addEventListener('click', (e)=>{
+          const lines = cartLines();
+          if(!lines.length){ e.preventDefault(); alert('Your bag is empty.'); return; }
+          bagWa.href = waLink(buildOrderMessage(lines));
+        });
+      }
+      document.getElementById('bag-clear')?.addEventListener('click', ()=>{
+        if(confirm('Remove everything from your bag?')) clearBag();
+      });
+
       /* ---------- checkout order summary ---------- */
       const checkoutSummaryEl = document.getElementById('checkout-summary');
       if(checkoutSummaryEl){
-        const cart = getCart();
+        const cart = cartLines();
         if(!cart.length){
           checkoutSummaryEl.innerHTML = '<p class="bag-empty">Your bag is empty. <a href="collection.html">Browse the shop</a>.</p>';
           const payBtn = document.getElementById('pay-btn');
           if(payBtn) payBtn.disabled = true;
         } else {
           checkoutSummaryEl.innerHTML = cart.map(item=>{
-            const p = findProduct(item.id);
-            if(!p) return '';
+            const p = item;
             return `
               <div class="checkout-line">
                 <img src="${escapeHTML(p.image)}" alt="${escapeHTML(p.name)}">
@@ -1917,7 +2039,7 @@
         panel.classList.add('open'); panel.setAttribute('aria-hidden','false'); fab.style.display = 'none';
         if(!greeted){
           greeted = true;
-          addMsg(`Hello! I am the A.Vanderpuije assistant. Tap a question below or type your own.`, 'bot');
+          addMsg(`Hello! I am the A.Vanderpuije chatbot. Tap a question below or type your own.`, 'bot');
           renderChips();
         }
         setTimeout(()=>input.focus(), 350);
@@ -1925,6 +2047,16 @@
       function closeChat(){
         panel.classList.remove('open'); panel.setAttribute('aria-hidden','true'); fab.style.display = '';
       }
+      // a small speech bubble tells visitors this is a chatbot (shown once per visit)
+      const hint = document.getElementById('chat-hint');
+      let hintSeen = false;
+      try { hintSeen = sessionStorage.getItem('avpChatHint') === '1'; } catch(e){}
+      const hideHint = () => hint && hint.classList.remove('show');
+      if(hint && !hintSeen){
+        const wait = () => document.body.classList.contains('preloading') ? 10000 : 6000;
+        setTimeout(() => { if(!panel.classList.contains('open')){ hint.classList.add('show'); setTimeout(hideHint, 8000); try { sessionStorage.setItem('avpChatHint','1'); } catch(e){} } }, wait());
+      }
+      fab.addEventListener('click', hideHint);
       fab.addEventListener('click', openChat);
       closeBtn.addEventListener('click', closeChat);
       document.addEventListener('keydown', e=>{ if(e.key==='Escape' && panel.classList.contains('open')) closeChat(); });
@@ -2045,7 +2177,6 @@
         });
       }
     })();
-
     /* ---------- preloader ---------- */
     (function(){
       const pre = document.getElementById('preloader');
@@ -2162,6 +2293,64 @@
       document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && overlay.classList.contains('open')) closeWelcome(); });
     })();
 
+    /* ---------- homepage product row: slow, continuous drift (right to left) ---------- */
+    (function(){
+      const rail = document.getElementById('hl-rail');
+      const track = document.getElementById('hl-track');
+      if(!rail || !track) return;
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const card = (p, dup) =>
+        '<div class="hl-card" data-open-quickview data-product-id="' + escapeHTML(p.id) + '" role="button" ' + (dup ? 'aria-hidden="true" tabindex="-1"' : 'tabindex="0"') + ' aria-label="' + escapeHTML(p.name) + '">' +
+        '<div class="hl-img"><img src="' + escapeHTML(p.image) + '" alt="' + (dup ? '' : escapeHTML(p.name)) + '" draggable="false" loading="eager"></div>' +
+        '<div class="hl-meta"><span class="hl-name">' + escapeHTML(p.name) + '</span><span class="hl-price">' + formatGHS(p.price) + '</span></div></div>';
+
+      getProducts().then(list => {
+        let items = list.filter(p => p.featured);
+        if(items.length < 4) items = list.slice(0, 8);
+        if(!items.length) return;
+        let seq = items.slice();
+        while(seq.length < 8) seq = seq.concat(items);
+        track.innerHTML = seq.map(p => card(p, false)).join('') + seq.map(p => card(p, true)).join('');
+        start(seq.length);
+      });
+
+      function start(n){
+        let pos = 0, last = null, dragging = false, startX = 0, startPos = 0, moved = 0, resumeAt = 0, hover = false;
+        const speed = () => (window.innerWidth < 700 ? 24 : 32); // pixels per second: slow and steady
+        const period = () => track.children[n].offsetLeft - track.children[0].offsetLeft;
+        const frame = (t) => {
+          if(last === null) last = t;
+          const dt = Math.min(0.05, (t - last) / 1000); last = t;
+          if(!dragging && !reduce && Date.now() >= resumeAt) pos += speed() * dt * (hover ? 0.25 : 1);
+          const w = period();
+          if(w > 0) pos = ((pos % w) + w) % w;
+          track.style.transform = 'translate3d(' + (-pos) + 'px,0,0)';
+          requestAnimationFrame(frame);
+        };
+        requestAnimationFrame(frame);
+
+        rail.addEventListener('pointerdown', e => {
+          if(e.pointerType === 'mouse' && e.button !== 0) return;
+          dragging = true; startX = e.clientX; startPos = pos; moved = 0;
+        });
+        window.addEventListener('pointermove', e => {
+          if(!dragging) return;
+          const dx = e.clientX - startX;
+          moved = Math.max(moved, Math.abs(dx));
+          pos = startPos - dx;
+        });
+        const release = () => { if(dragging){ dragging = false; resumeAt = Date.now() + 1200; } };
+        window.addEventListener('pointerup', release);
+        window.addEventListener('pointercancel', release);
+        rail.addEventListener('mouseenter', () => hover = true);
+        rail.addEventListener('mouseleave', () => hover = false);
+        // a drag is not a tap: do not open the quick view after swiping
+        track.addEventListener('click', e => { if(moved > 6){ e.stopPropagation(); e.preventDefault(); moved = 0; } }, true);
+        track.addEventListener('keydown', e => {
+          if((e.key === 'Enter' || e.key === ' ') && e.target.matches('[data-open-quickview]')){ e.preventDefault(); e.target.click(); }
+        });
+      }
+    })();
 </script>
 </body>
 </html>
